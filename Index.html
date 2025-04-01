@@ -1,0 +1,228 @@
+<html>
+        <head><title>Downloaded HTML</title></head>
+        <body>
+            <pre style="white-space: pre-wrap; word-wrap: break-word;"><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutoring Services</title>
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            margin: 0;
+            padding: 5px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            width: 90%; /* Responsive width */
+            margin: 0 auto;
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            font-size: 2rem; /* Scales with screen size */
+            margin: 5px 0;
+        }
+        h2 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        h3 {
+            font-size: 1.2rem;
+            margin: 5px 0;
+        }
+        p {
+            font-size: 1rem;
+            margin: 3px 0;
+        }
+        .button-container {
+            display: flex;
+            flex-wrap: wrap; /* Allows buttons to stack on small screens */
+            justify-content: center;
+            gap: 10px;
+        }
+        button {
+            padding: 6px 12px;
+            margin: 3px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #chatButton, #bookButton, #reviewButton {
+            padding: 9px 18px;
+            font-size: 24px;
+        }
+        .reviews {
+            text-align: center;
+        }
+        .review-button-container {
+            display: flex;
+            justify-content: center;
+        }
+        #reviewList {
+            text-align: left;
+            margin: 5px auto;
+            max-width: 400px;
+            width: 90%; /* Responsive width */
+        }
+        textarea, select, input[type="datetime-local"] {
+            width: 100%;
+            max-width: 400px;
+            height: 60px; /* Textarea height */
+            margin: 3px 0;
+            box-sizing: border-box; /* Includes padding in width */
+        }
+        #chatForm, #calendarForm, #reviewForm {
+            margin-top: 5px;
+        }
+        /* Mobile adjustments */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+            h2 {
+                font-size: 1.2rem;
+            }
+            h3 {
+                font-size: 1rem;
+            }
+            p {
+                font-size: 0.9rem;
+            }
+            #chatButton, #bookButton, #reviewButton {
+                padding: 6px 12px; /* Smaller on mobile */
+                font-size: 18px;
+            }
+            button {
+                font-size: 14px;
+            }
+            textarea, select, input[type="datetime-local"] {
+                height: 50px; /* Smaller textarea on mobile */
+            }
+            .button-container {
+                flex-direction: column; /* Stack buttons vertically */
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to My Tutoring Services</h1>
+        <p>Quality education for your student, tailored to their needs.</p>
+
+        <h2>About Me</h2>
+        <p>Hi, I'm [Your Name], a dedicated tutor with [X years] of experience helping students succeed.</p>
+        
+        <div class="button-container">
+            <button id="chatButton" onclick="openChat()">Chat</button>
+            <button id="bookButton" onclick="openCalendar()">Book a Session</button>
+        </div>
+
+        <div class="reviews">
+            <h2>Reviews</h2>
+            <div class="review-button-container">
+                <button id="reviewButton" onclick="openReviewForm()">Write a Review</button>
+            </div>
+        </div>
+
+        <div id="chatForm" style="display:none;">
+            <h3>Chat with Me</h3>
+            <p>Please provide some quick info about your student:</p>
+            <textarea id="chatInfo" placeholder="Student's name, grade, subjects needed..."></textarea><br>
+            <p>Preferred consultation type:</p>
+            <select id="chatType">
+                <option value="in-person">In-Person</option>
+                <option value="zoom">Over Zoom</option>
+            </select><br>
+            <button onclick="submitChat()">Submit</button>
+        </div>
+
+        <div id="calendarForm" style="display:none;">
+            <h3>Book a Session</h3>
+            <p>Select date and time:</p>
+            <input type="datetime-local" id="sessionTime"><br>
+            <p>Session type:</p>
+            <select id="sessionType">
+                <option value="in-person">In-Person</option>
+                <option value="zoom">Over Zoom</option>
+            </select><br>
+            <button onclick="submitBooking()">Book</button>
+        </div>
+
+        <div id="reviewList">
+            <!-- Reviews will appear here -->
+        </div>
+        <div id="reviewForm" style="display:none;">
+            <textarea id="reviewText" placeholder="Your review..."></textarea><br>
+            <button onclick="submitReview()">Submit Review</button>
+        </div>
+    </div>
+
+    <script>
+        function openChat() {
+            document.getElementById('chatForm').style.display = 'block';
+            document.getElementById('calendarForm').style.display = 'none';
+            document.getElementById('reviewForm').style.display = 'none';
+        }
+
+        function openCalendar() {
+            document.getElementById('calendarForm').style.display = 'block';
+            document.getElementById('chatForm').style.display = 'none';
+            document.getElementById('reviewForm').style.display = 'none';
+        }
+
+        function openReviewForm() {
+            document.getElementById('reviewForm').style.display = 'block';
+            document.getElementById('chatForm').style.display = 'none';
+            document.getElementById('calendarForm').style.display = 'none';
+        }
+
+        function submitChat() {
+            const info = document.getElementById('chatInfo').value;
+            const type = document.getElementById('chatType').value;
+            const message = `Chat Request:\nInfo: ${info}\nType: ${type}`;
+            alert('Chat submitted! (Email functionality requires a backend)');
+            console.log('Email to: thepicarelli@proton.me\n' + message);
+            document.getElementById('chatForm').style.display = 'none';
+            document.getElementById('chatInfo').value = '';
+        }
+
+        function submitBooking() {
+            const time = document.getElementById('sessionTime').value;
+            const type = document.getElementById('sessionType').value;
+            const message = `Booking Request:\nTime: ${time}\nType: ${type}`;
+            alert('Booking submitted! (Email functionality requires a backend)');
+            console.log('Email to: thepicarelli@proton.me\n' + message);
+            document.getElementById('calendarForm').style.display = 'none';
+            document.getElementById('sessionTime').value = '';
+        }
+
+        function submitReview() {
+            const review = document.getElementById('reviewText').value;
+            const reviewList = document.getElementById('reviewList');
+            const newReview = document.createElement('p');
+            newReview.textContent = review;
+            reviewList.appendChild(newReview);
+            const message = `New Review:\n${review}`;
+            alert('Review submitted! (Email functionality requires a backend)');
+            console.log('Email to: thepicarelli@proton.me\n' + message);
+            document.getElementById('reviewForm').style.display = 'none';
+            document.getElementById('reviewText').value = '';
+        }
+    </script>
+</body>
+</html></pre>
+        </body>
+    </html>
